@@ -1,27 +1,30 @@
-# FrontendRendaFixa
+# Frontend Renda Fixa
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.18.
+**Frontend Renda Fixa** é um projeto desenvolvido em Angular 12, que visa facilitar a visualização e compra de produtos de renda fixa, como CDBs, LCIs, LCAs, e outros. O projeto se conecta a uma API backend para gerenciar contas de usuários e suas compras.
 
-## Development server
+## Visão Geral do Projeto
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Este aplicativo front-end permite aos usuários:
+- Visualizar uma lista de produtos de renda fixa disponíveis para compra.
+- Criar novas contas para gerenciar seu saldo.
+- Visualizar o histórico de compras realizadas.
 
-## Code scaffolding
+### Funcionalidades
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Lista de Produtos**: Exibe informações detalhadas sobre cada produto de renda fixa, incluindo nome, tipo, preço, taxa e índice.
+- **Gerenciamento de Contas**: Permite criar e gerenciar contas de usuário, incluindo saldo disponível.
+- **Histórico de Compras**: Os usuários podem acessar um histórico de suas compras anteriores.
 
-## Build
+## Tecnologias Utilizadas
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- [Angular](https://angular.io/) 12: Framework para construção de aplicações web.
+- [Bootstrap](https://getbootstrap.com/): Framework CSS para estilização.
+- [RxJS](https://rxjs.dev/): Biblioteca para programação reativa.
 
-## Running unit tests
+## Instalação
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Para instalar o projeto, siga os passos abaixo:
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. **Clone o repositório**:
+   ```bash
+   git clone https://github.com/chamone8/FrontEnd-Renda-Fixa.git
