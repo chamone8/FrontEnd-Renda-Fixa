@@ -1,0 +1,107 @@
+<div class="container">
+  <h1 class="my-4">Lista de Produtos</h1>
+
+  <div *ngIf="purchases.length > 0">
+    <h3>Último Usuário Criado:</h3>
+    <p><strong>Nome:</strong> {{ account?.name }}</p>
+    <p><strong>Saldo:</strong> {{ account?.balance | currency }}</p>
+  </div>
+
+  <!-- Modal de Histórico de Compras -->
+  <ng-template #purchaseHistoryModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Histórico de Compras</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <ul class="list-group">
+        <li *ngFor="let purchase of purchases" class="list-group-item">
+          <strong>Produto:</strong> {{ getProductName(purchase.productId) }} | 
+          <strong>Quantidade:</strong> {{ purchase.quantity }} | 
+          <strong>Data:</strong> {{ purchase.purchaseDate | date:'dd/MM/yyyy' }}
+        </li>
+      </ul>
+      <div *ngIf="purchases.length === 0" class="text-center">
+        <p>Nenhuma compra encontrada.</p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Fechar</button>
+    </div>
+  </ng-template>
+
+  <div *ngIf="account" class="card shadow-lg p-4 mb-4 bg-white rounded">
+    <div class="card-body">
+      <h3 class="card-title text-center text-primary">Último Usuário Criado</h3>
+      <p class="card-text">
+        <strong>Nome:</strong> 
+        <span class="text-dark"> {{ account.name }}</span>
+      </p>
+      <p class="card-text">
+        <strong>Saldo:</strong> 
+        <span class="text-success"> {{ account.balance | currency }}</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- Botões para abrir os modais -->
+  <div class="mb-3">
+    <button type="button" class="btn btn-primary me-2" (click)="openCreateAccountModal(createAccountModal)">Criar Nova Conta</button>
+    <button type="button" class="btn btn-info" (click)="openPurchaseHistoryModal(purchaseHistoryModal, accountId)">Ver Histórico de Compras</button>
+  </div>
+
+  <!-- Modal para criar nova conta -->
+  <ng-template #createAccountModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Criar Nova Conta</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form #accountForm="ngForm">
+        <div class="form-group">
+          <label for="accountName">Nome</label>
+          <input type="text" class="form-control" id="accountName" required [(ngModel)]="accountName" name="accountName" />
+        </div>
+        <div class="form-group">
+          <label for="accountBalance">Saldo</label>
+          <input type="number" class="form-control" id="accountBalance" required [(ngModel)]="accountBalance" name="accountBalance" />
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Fechar</button>
+      <button type="button" class="btn btn-primary" (click)="createAccount(accountName, accountBalance); modal.close()">Salvar</button>
+    </div>
+  </ng-template>
+
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>Nome</th>
+        <th>Tipo de Produto</th>
+        <th>Preço</th>
+        <th>Taxa</th>
+        <th>Indexador</th>
+        <th>Estoque</th>
+        <th>Ação</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.issuerName }}</td>
+        <td>{{ product.bondAsset }}</td>
+        <td>{{ product.unitPrice | currency:'BRL' }}</td>
+        <td>{{ product.tax }}%</td>
+        <td>{{ product.index }}</td>
+        <td>{{ product.stock }}</td>
+        <td>
+          <a [routerLink]="['/purchase', product.id]" class="btn btn-primary">Comprar</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,41 @@
+<div class="container mt-5">
+    <h1 class="mb-4">Comprar Produto</h1>
+
+    <div *ngIf="account" class="card shadow-lg p-4 mb-4 bg-white rounded">
+        <div class="card-body">
+          <h3 class="card-title text-center text-primary">Último Usuário Criado</h3>
+          <p class="card-text">
+            <strong>Nome:</strong> 
+            <span class="text-dark"> {{ account.name }}</span>
+          </p>
+          <p class="card-text">
+            <strong>Saldo:</strong> 
+            <span class="text-success"> {{ account.balance | currency }}</span>
+          </p>
+        </div>
+      </div>
+      
+    <div *ngIf="message" class="alert alert-info" role="alert">
+        {{ message }}
+    </div>
+   
+
+    <form (submit)="purchase()" class="border p-4 rounded bg-light shadow">
+        <div class="form-group">
+            <label for="quantity">Quantidade</label>
+            <input 
+                type="number" 
+                id="quantity" 
+                [(ngModel)]="quantity" 
+                name="quantity" 
+                class="form-control" 
+                min="1" 
+                required 
+                placeholder="Insira a quantidade"
+            >
+        </div>
+        
+        <button type="submit" class="btn btn-success mt-3">Comprar</button>
+    </form>
+    <a routerLink="" class="btn btn-link text-secondary">Voltar para a Lista de Produtos</a>
+</div>
